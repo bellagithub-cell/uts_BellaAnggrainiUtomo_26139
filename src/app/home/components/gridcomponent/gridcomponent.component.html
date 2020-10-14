@@ -1,0 +1,22 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" *ngFor="let str of storage">
+      <!-- <ion-item  > -->
+        <!-- <ion-img [src]="str.imageUrl" style="width: 150px; height: 150px;"></ion-img>
+        <ion-label>
+          <h2>{{ str.id }}</h2>
+          <p>{{ str.harga }}</p>
+          <p>{{ str.model }}</p>
+        </ion-label> -->
+        <ion-card [routerLink]="['./', str.id]">
+            <ion-img [src]="str.imageUrl[0]" style="padding-bottom: 3px;"></ion-img>
+            <ion-card-content>
+            <h2>{{ str.merek }} {{ str.model }}</h2>
+            <p>Rp. {{ str.harga }}</p>
+            <p>Tersedia : {{ str.stok }}</p>
+          </ion-card-content>
+        </ion-card>
+      <!-- </ion-item> -->
+    </ion-col>
+  </ion-row>
+  </ion-grid>

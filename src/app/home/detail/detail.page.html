@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ loadedStorage.merek }} {{ loadedStorage.model }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+        <ion-slides pager="true">
+        <ion-slide *ngFor="let img of loadedStorage.imageUrl">
+          <ion-img [src]="img"></ion-img>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>
+            <p>{{ loadedStorage.merek }} {{ loadedStorage.model }}</p>
+            <p>Rp. {{ loadedStorage.harga }}</p>
+            <p>Tersedia : {{ loadedStorage.stok }}</p>
+            <!-- <p>{{ loadedStorage.category }}</p> -->
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Tentang Produk</ion-label>
+        </ion-item>
+        <ion-item *ngIf="loadedStorage.category === 'CPU'">
+          <ion-label>
+            <p>Base Clock : {{ loadedStorage.baseclock }}</p>
+            <p>Boost Clock : {{ loadedStorage.boostclock }}</p>
+            <p>Core : {{ loadedStorage.core }}</p>
+            <p>Thread : {{ loadedStorage.thread }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="loadedStorage.category === 'RAM'">
+          <ion-label>
+            <p>Speed  : {{ loadedStorage.speed }}</p>
+            <p>Ukuran : {{ loadedStorage.ukuran }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="loadedStorage.category === 'Motherboard'">
+          <ion-label>
+            <p>Chipset : {{ loadedStorage.chipset }}</p>
+            <p>Processor : {{ loadedStorage.processor }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

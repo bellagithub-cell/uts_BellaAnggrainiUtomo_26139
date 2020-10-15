@@ -7,10 +7,12 @@ import { Storage } from './app.model';
 })
 export class AppService {
  // kita buat datanya, karena private harus kasih function
+ arrimage = [];
+
  private storage: Storage[] = [{
   id: 's1',
-  imageUrl: ['https://www.powerplanetonline.com/cdnassets/procesador_amd_ryzen_5_3600_02_ad_l.jpg', 
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Nasi_goreng_indonesia.jpg/250px-Nasi_goreng_indonesia.jpg'],
+  imageUrl: ['https://arx.co.id/wp-content/uploads/sites/2/2019/02/ryzen-5-logo.jpg',
+  'https://www.powerplanetonline.com/cdnassets/procesador_amd_ryzen_5_3600_02_ad_l.jpg'],
   merek: 'AMD Ryzen',
   model: '5950X',
   baseclock: '3.4 GHz',
@@ -27,7 +29,7 @@ export class AppService {
 },
 {
   id: 's2',
-  imageUrl: ['https://images-na.ssl-images-amazon.com/images/I/41i%2BsZeH71L._AC_UL474_SR474,450_.jpg'],
+  imageUrl: ['https://images-na.ssl-images-amazon.com/images/I/51GjnJrTWhL._AC_SL1221_.jpg'],
   merek: 'AMD RYZEN',
   model: '36000XT',
   baseclock: '3.8 GHz',
@@ -78,7 +80,7 @@ export class AppService {
 },
 {
   id: 's5',
-  imageUrl: ['https://computory.com/wp-content/uploads/2019/02/fungsi-gpu-1200x675.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Nasi_goreng_indonesia.jpg/250px-Nasi_goreng_indonesia.jpg'],
+  imageUrl: ['https://computory.com/wp-content/uploads/2019/02/fungsi-gpu-1200x675.jpg', 'https://cdn.wccftech.com/wp-content/uploads/2019/07/GeForce_Super-2080S-4_1561506665-Custom-1.jpg'],
   merek: 'ASD',
   model: 'GPU Minyak gosok',
   baseclock: null,
@@ -95,7 +97,7 @@ export class AppService {
 },
 {
   id: 's6',
-  imageUrl: ['https://www.extremetech.com/wp-content/uploads/2017/06/P106-6G-640x353.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Nasi_goreng_indonesia.jpg/250px-Nasi_goreng_indonesia.jpg'],
+  imageUrl: ['https://www.extremetech.com/wp-content/uploads/2017/06/P106-6G-640x353.jpg', 'https://www.amd.com/system/files/2019-10/312735-ryzen9-generic-water-cooler-1260x709.jpg'],
   merek: 'GeForce',
   model: 'GTX 760',
   baseclock: null,
@@ -164,14 +166,14 @@ export class AppService {
     });
     toast.present();
   }
-
+  
+  data: number = this.storage.length+1;
   addContact(form){
-    console.log(form.value.image);
-    const data = this.storage.length+1; 
-    // console.log(data);
+    var arrimage = form.value.image.split(",");
+    // console.log(arrimage);
     this.storage.push({
-      id: 's' + data,
-      imageUrl: [form.value.image],
+      id: 's' + this.data,
+      imageUrl: arrimage,
       merek: form.value.merek,
       model: form.value.model,
       baseclock: form.value.baseclock,
@@ -186,18 +188,16 @@ export class AppService {
       chipset: form.value.chipset,
       category: form.value.jenis,
     });
+    this.data++;
   }
 
 
   EditContact(form){
-    console.log(form.value.stock);
-    // const data = this.storage.length+1; 
-    // // console.log(data);
+    console.log(form.value.image);
     for(var i = 0; i < this.storage.length; i++){
       if(this.storage[i].id == form.value.id){
-        // console.log("masuk");
         this.storage[i].id = form.value.id;
-        this.storage[i].imageUrl = [form.value.image];
+        this.storage[i].imageUrl = form.value.image.split(",");
         this.storage[i].merek = form.value.merek;
         this.storage[i].model = form.value.model;
         this.storage[i].baseclock = form.value.baseclock;

@@ -14,6 +14,7 @@ import { Route } from '@angular/compiler/src/core';
 })
 export class EditPage implements OnInit {
   param: Storage;
+  uimg: string = "";
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,6 +33,13 @@ export class EditPage implements OnInit {
       const eId = paramMap.get('editId');
       this.param = this.appService.getStorage(eId);
       // console.log(this.param);
+      //untuk ubah array
+      for(let u = 0; u < this.param.imageUrl.length; u++){
+        this.uimg += this.param.imageUrl[u] + ',';
+      }
+      this.uimg = this.uimg.substring(0, this.uimg.length-1);
+      // console.log(this.uimg);
+
     });
   }
 
@@ -40,7 +48,7 @@ export class EditPage implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    console.log(form);
+    console.log(form.value.image);
     // console.log(form);
     if(!form.valid){
       return;
@@ -49,7 +57,7 @@ export class EditPage implements OnInit {
   }
 
   editContact(form){
-    console.log(form.value.id);
+    // console.log(form.value.id);
     this.presentLoading().then(() => {
       this.appService.EditContact(form);
         this.router.navigate(['./admin']);

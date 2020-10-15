@@ -11,9 +11,9 @@
   <form #formedit="ngForm" (ngSubmit)="onSubmit(formedit)">
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">URL Foto</ion-label>
+        <ion-label position="stacked">URL Foto (Separate with comma)</ion-label>
         <ion-input type="text"
-                   [(ngModel)] = "param.imageUrl"
+                   [(ngModel)] = "uimg"
                    name="image"
                    #imageCtrl="ngModel"
                    required></ion-input>

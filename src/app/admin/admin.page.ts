@@ -84,15 +84,17 @@ private list = [];
   }
 
   press(){
-    console.log("event : ");
+    // console.log("event : ");
     this.selection = true;
     return this.selection;
   }
 
-  selectSize(str){
-    // console.log(str);
-    this.list.push(str);
-    console.log(this.list);
+  selectSize(event, str){
+    // console.log("event: "+ event.target.checked);
+    if(event.target.checked == true){
+      this.list.push(str);
+      console.log(this.list);
+    } 
   }
 
   delete(){

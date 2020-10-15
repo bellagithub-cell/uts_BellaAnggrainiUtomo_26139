@@ -24,7 +24,7 @@
             </ion-item-options>
 
             <!-- <ion-item-options (press)="press()"></ion-item-options> -->
-            <ion-checkbox slot="start" *ngIf="selection === true" (ionChange)="selectSize(str.id)"></ion-checkbox>
+            <ion-checkbox slot="start" *ngIf="selection === true" (ionChange)="selectSize($event, str.id)"></ion-checkbox>
             <ion-item [routerLink]="['./', str.id]" ion-long-press [interval]="400" (longPressed)="press()">
               <ion-thumbnail slot="start">
                 <img [src]="str.imageUrl[0]">
